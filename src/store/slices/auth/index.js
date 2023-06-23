@@ -23,17 +23,16 @@ const INITIAL_STATE = {
     isLoginLoading : false,
     isKeepLoginLoading : false,
     isRegisterLoading : false,
-    isForgotLoading : false,
+    isForgotPasswordLoading : false,
     isResetPasswordLoading : false,
-    isUpdateProfileDetails : false,
-    isUpdateProfilePicLoading : false,
+    isUpdateProfileDetailsLoading : false,
+    isUpdatePhotoProfileLoading : false,
     isLogoutLoading : false,
-    id: null,
     username: "",
     email: "",
     phone : "",
     imgProfile : null,
-    role : null
+    
 }
 
 // @create slice
@@ -45,65 +44,181 @@ const authSlice = createSlice({
     },
     extraReducers : {
         [login.pending] : (state, action) => {
-            state.loading = true
+            state.isLoginLoading = true
         },
         [login.fulfilled] : (state, action) => {
-            state.loading = false
-            state.id = action.payload?.id
-            state.username = action.payload?.username
-            state.password = action.payload?.password
-            state.email = action.payload?.email
-            state.role = action.payload?.role
-            state.token = action.payload?.token            
+            state = Object.assign(state, {
+                id : action.payload?.id,
+                username : action.payload?.username,
+                email : action.payload?.email,
+                phone : action.payload?.phone,
+                imgProfile : action.payload?.imgProfile,
+                isVerified : action.payload?.isVerified,
+                isLogin : true,
+                isLoginLoading : false,
+            })
         },
         [login.rejected] : (state, action) => {
-            state.loading = false
+            state = Object.assign(state, {
+                isLoginLoading : false,
+                isLogin : false,
+            })
+        },
+        [logout.pending] : (state, action) => {
+            state.isLogoutLoading = true
+        },
+        [logout.fulfilled] : (state, action) => {
+            state = Object.assign(state, INITIAL_STATE)         
+        },
+        [logout.rejected] : (state, action) => {
+            state.isLogoutLoading = false
         },
         [keepLogin.pending] : (state, action) => {
             state.isKeepLoginLoading = true
         },
         [keepLogin.fulfilled] : (state, action) => {
-            state.isKeepLoginLoading = false
-            state.id = action.payload?.id
-            state.username = action.payload?.username
-            state.password = action.payload?.password
-            state.email = action.payload?.email
-            state.role = action.payload?.role
-            state.token = action.payload?.token            
+            state = Object.assign(state, {
+                id : action.payload?.id,
+                username : action.payload?.username,
+                email : action.payload?.email,
+                phone : action.payload?.phone,
+                password : action.payload?.password,
+                imgProfile : action.payload?.imgProfile,
+                isVerified : action.payload?.isVerified,
+                isLogin : true,
+                isKeepLoginLoading : false,
+            })
         },
         [keepLogin.rejected] : (state, action) => {
-            state.isKeepLoginLoading = false
+            state = Object.assign(state, {
+                isKeepLoginLoading : false,
+                isLogin : false,
+            })
         },
         [register.pending] : (state, action) => {
-            state.loading = true
+            state.isRegisterLoading = true
         },
         [register.fulfilled] : (state, action) => {
-            state.loading = false
-            state.id = action.payload?.id
-            state.username = action.payload?.username
-            state.password = action.payload?.password
-            state.email = action.payload?.email
-            state.role = action.payload?.role
-            state.token = action.payload?.token            
+            state = Object.assign(state, {
+                id : action.payload?.id,
+                username : action.payload?.username,
+                email : action.payload?.email,
+                phone : action.payload?.phone,
+                isVerified : false,
+                isKeepLoginLoading : false,
+                isRegisterLoading : false,
+            })
         },
         [register.rejected] : (state, action) => {
-            state.loading = false
+            state = Object.assign(state, {
+                isRegisterLoading : false,
+                isLogin : false,
+            })
         },
-        [logout.pending] : (state, action) => {
-            state.loading = true
+        [verifyAccount.pending] : (state, action) => {
+            state.isRegisterLoading = true
         },
-        [logout.fulfilled] : (state, action) => {
-            state.loading = false
-            state.id = null
-            state.username = null
-            state.password = null
-            state.email = null
-            state.role = null
-            state.token = null            
+        [verifyAccount.fulfilled] : (state, action) => {
+            state = Object.assign(state, {
+                isRegisterLoading : false,
+                isVerified : true,
+                isLogin : false,
+            })
         },
-        [logout.rejected] : (state, action) => {
-            state.loading = false
+        [verifyAccount.rejected] : (state, action) => {
+            state = Object.assign(state, {
+                isRegisterLoading : false,
+                isVerified : false,
+                isLogin : false,
+            })
+        },
+        [forgotPassword.pending] : (state, action) => {
+            state.isForgotPasswordLoading = true
+        },
+        [forgotPassword.fulfilled] : (state, action) => {
+            state.isForgotPasswordLoading = false
+        },
+        [forgotPassword.rejected] : (state, action) => {
+            state.isForgotPasswordLoading = false
+        },
+        [resetPassword.pending] : (state, action) => {
+            state.isResetPasswordLoading = true
+        },
+        [resetPassword.fulfilled] : (state, action) => {
+            state.isResetPasswordLoading = false
+        },
+        [resetPassword.rejected] : (state, action) => {
+            state.isResetPasswordLoading = false
+        },
+        [changeUsername.pending] : (state, action) => {
+            state.isUpdateProfileDetailsLoading = true
+        },
+        [changeUsername.fulfilled] : (state, action) => {
+            state = Object.assign(state, {
+                isUpdateProfileDetailsLoading : false,
+                username : action.payload.newUsername,
+            })
+        },
+        [changeUsername.rejected] : (state, action) => {
+            state.isUpdateProfileDetailsLoading = false
+        },
+        [changeEmail.pending] : (state, action) => {
+            state.isUpdateProfileDetailsLoading = true
+        },
+        [changeEmail.fulfilled] : (state, action) => {
+            state.isUpdateProfileDetailsLoading = false
+        },
+        [changeEmail.rejected] : (state, action) => {
+            state.isUpdateProfileDetailsLoading = false
+        },
+        [changePhone.pending] : (state, action) => {
+            state.isUpdateProfileDetailsLoading = true
+        },
+        [changePhone.fulfilled] : (state, action) => {
+            state = Object.assign(state, {
+                isUpdateProfileDetailsLoading : false,
+                phone : action.payload.newPhone,
+            })
+        },
+        [changePhone.rejected] : (state, action) => {
+            state.isUpdateProfileDetailsLoading = false
+            
+        },
+        [changePass.pending] : (state, action) => {
+            state.isResetPassword = false
+        },
+        [changePass.fulfilled] : (state, action) => {
+            state = Object.assign(state, {
+                id : "",
+                username : "",
+                email : "",
+                phone : "",
+                password: "",
+                imgProfile : "",
+                isResetPassword : true,
+                isLogin : false
+            })
+        },
+        [changePass.rejected] : (state, action) => {
+            state.isResetPassword = false
+        },
+        [changePhotoProfile.pending] : (state, action) => {
+            state = Object.assign(state, {
+                isUpdatePhotoProfileLoading : true,
+                imgProfile : null
+            })
+        },
+        [changePhotoProfile.fulfilled] : (state, action) => {
+            state = Object.assign(state, {
+                sisUpdatePhotoProfileLoading : false,
+                imgProfile : action.payload.imgProfile
+            })
+        },
+        [changePhotoProfile.rejected] : (state, action) => {
+            state.isUpdatePhotoProfileLoading = false
         }
+
+        
     }
 })
 

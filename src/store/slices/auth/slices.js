@@ -1,4 +1,5 @@
 import Toast from "react-hot-toast";
+import { Navigate } from "react-router-dom";
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import api from "../../utils/api.instance"
 
@@ -21,6 +22,7 @@ export const login = createAsyncThunk(
 
             return data?.isAccountExist
         } catch (error) {
+            console.error(error)
             Toast.error(error.response.data)
             return rejectWithValue(error.response.data)
         }
@@ -44,6 +46,7 @@ export const keepLogin = createAsyncThunk(
 
             return data
         } catch (error) {
+            console.error(error)
             Toast.error(error.response.data)
             return rejectWithValue(error.response.data)
         }
@@ -60,6 +63,7 @@ export const register = createAsyncThunk(
             Toast.success(data?.message)
             return data?.data
         } catch (error) {
+            console.error(error)
             Toast.error(error.response.data)
             return rejectWithValue(error.response.data)
         }
@@ -75,6 +79,7 @@ export const logout = createAsyncThunk(
             localStorage.removeItem("id")
 
         } catch (error) {
+            console.error(error)
             Toast.error(error.response.data)
             return rejectWithValue(error.response.data)
         }
@@ -89,6 +94,7 @@ export const verifyAccount = createAsyncThunk(
             const {data} = await api.patch("/auth/verify",{},)
             Toast.success(data.message)
         } catch (error) {
+            console.error(error)
             Toast.error(error.reponse.data)
             return rejectWithValue(error.response.data)
         }
@@ -102,6 +108,7 @@ export const forgotPassword = createAsyncThunk(
             const {data} = await api.put("/auth/forgotPass", payload)
             Toast.success(data.message) 
         } catch (error) {
+            console.error(error)
             Toast.error("failed to verify your account")
             return rejectWithValue(error.response.data)
         }
@@ -116,6 +123,7 @@ export const resetPassword = createAsyncThunk(
             Toast.success(data.message) 
             return <Navigate to="/login" replace/>
         } catch (error) {
+            console.error(error)
             Toast.error(error.response.data)
             return rejectWithValue(error.response.data)
         }
@@ -131,6 +139,7 @@ export const changeUsername = createAsyncThunk(
             Toast.success("username has been updated!") 
             return payload
         } catch (error) {
+            console.error(error)
             Toast.error(error.response.data)
             return rejectWithValue(error.response.data)
         }
@@ -148,6 +157,7 @@ export const changeEmail = createAsyncThunk(
             localStorage.setItem("token",data.token)
             return data
         } catch (error) {
+            console.error(error)
             Toast.error(error.response.data)
             return rejectWithValue(error.response.data)
         }
@@ -162,6 +172,7 @@ export const changePhone = createAsyncThunk(
             Toast.success("phone number has been updated!") 
             return payload
         } catch (error) {
+            console.error(error)
             Toast.error(error.response.data)
             return rejectWithValue(error.response.data)
         }
@@ -178,6 +189,7 @@ export const changePass = createAsyncThunk(
             localStorage.removeItem("id")
             return data
         } catch (error) {
+            console.error(error)
             Toast.error(error.response.data)
             return rejectWithValue(error.response.data)
         }
@@ -191,6 +203,7 @@ export const changePhotoProfile = createAsyncThunk(
             const { data } = await api.post("/profile/single-uploaded", payload);
             return data?.imgProfile;
       } catch (error) {
+            console.error(error)
             Toast.error(error.response.data)
             return rejectWithValue(error.response.data)
       }

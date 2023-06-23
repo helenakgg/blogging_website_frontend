@@ -1,6 +1,6 @@
 import { Label, TextInput } from 'flowbite-react';
 
-export default function InputSizing() {
+export default function MyProfilePage() {
   return (
     <div className="flex max-w-md flex-col gap-4">
       <div>
