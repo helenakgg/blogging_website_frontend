@@ -54,7 +54,7 @@ export default function NavbarWithDropdown() {
         <Dropdown label="Categories" >
             <Dropdown.Item>
                 <Navbar.Link href="#" className="text-lg ">
-                BisnisTEST
+                Bisnis
                 </Navbar.Link>
             </Dropdown.Item>
             <Dropdown.Item>
