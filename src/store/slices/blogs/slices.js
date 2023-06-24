@@ -31,8 +31,8 @@ export const getLatestArticles = createAsyncThunk(
     }
 )
 
-export const getArticle = createAsyncThunk(
-    "blogs/getArticle",
+export const getArticles = createAsyncThunk(
+    "blogs/getArticles",
     async (payload, {rejectWithValue}) => {
         try {
             const { data } = await api.get(`/blog${payload}`)

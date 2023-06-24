@@ -33,21 +33,9 @@ export const keepLogin = createAsyncThunk(
     "auth/keepLogin",
     async (payload, { rejectWithValue }) => {
         try {
-            // // get token from local storage
-            // const token = localStorage.getItem("token")
-
-            // // @if token empty
-            // if (!token) {
-            //     return rejectWithValue({ message : "token not found." })
-            // }
-
-            // @get data user
-            const { data } = await api.get("/auth/")
-
+            const {data} = await api.get("/auth")
             return data
         } catch (error) {
-            console.error(error)
-            Toast.error(error.response.data)
             return rejectWithValue(error.response.data)
         }
     }
