@@ -1,0 +1,10 @@
+.flex-container-filter {
+    width: 100wh;
+    height: 80px;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+   
+}

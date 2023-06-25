@@ -1,3 +1,4 @@
+
 import { Footer } from 'flowbite-react';
 import { BsFacebook, BsGithub, BsInstagram, BsTwitter } from 'react-icons/bs';
 
@@ -23,7 +24,7 @@ export default function FooterWithSocialMediaIcons() {
                             <button type="submit" className="py-3 px-5 w-full text-sm font-medium text-center text-white rounded-lg border cursor-pointer bg-primary-700 border-primary-600 sm:rounded-none sm:rounded-r-lg hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Subscribe</button>
                         </div>
                     </div>
-                    <div className="mx-auto max-w-screen-sm text-sm text-left text-gray-500 newsletter-form-footer dark:text-gray-300">We care about the protection of your data. <a href="#" className="font-medium text-primary-600 dark:text-primary-500 hover:underline">Read our Privacy Policy</a>.</div>
+                    <div className="mx-auto max-w-screen-sm text-sm text-left text-gray-500 newsletter-form-footer dark:text-gray-300">We care about the protection of your data. <div className="font-medium text-primary-600 dark:text-primary-500 hover:underline">Read our Privacy Policy</div>.</div>
                 </form>
             </div>
         </div>
@@ -41,10 +42,10 @@ export default function FooterWithSocialMediaIcons() {
             <div>
               <Footer.Title title="Follow us" />
               <Footer.LinkGroup col>
-                <Footer.Link href="#">
+                <Footer.Link href="https://github.com" target="_blank">
                   Github
                 </Footer.Link>
-                <Footer.Link href="#">
+                <Footer.Link href="https://discord.com" target="_blank">
                   Discord
                 </Footer.Link>
               </Footer.LinkGroup>
@@ -72,18 +73,22 @@ export default function FooterWithSocialMediaIcons() {
           <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
             <Footer.Icon
               href="https://www.facebook.com"
+              target="_blank"
               icon={BsFacebook}
             />
             <Footer.Icon
               href="https://www.instagram.com"
+              target="_blank"
               icon={BsInstagram}
             />
             <Footer.Icon
               href="https://www.twitter.com"
+              target="_blank"
               icon={BsTwitter}
             />
             <Footer.Icon
               href="https://www.github.com"
+              target="_blank"
               icon={BsGithub}
             />
             
