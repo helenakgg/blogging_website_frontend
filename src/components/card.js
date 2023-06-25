@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux"
-import { likeArticle } from "../../../store/slices/blogs/slices"
+import { likeArticle } from "../store/slices/blogs/slices"
 import dateFormat from 'dateformat'
 
 import { Card } from 'flowbite-react';

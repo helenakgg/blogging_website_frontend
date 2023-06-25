@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 
 const Carousel = ({ data, interval }) => {
   const navigate = useNavigate();
-  const topThree = data.slice(0, 3);
-  const [blogs, setBlogs] = useState(topThree);
+  const topFive = data.slice(0, 5);
+  const [blogs, setBlogs] = useState(topFive);
   const [currentBlogIndex, setCurrentBlogIndex] = useState(0);
-  // console.log(topThree);
+  // console.log(topFive);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -50,7 +50,7 @@ const Carousel = ({ data, interval }) => {
         <div
           className="mb-10 w-full cursor-pointer self-end bg-gradient-to-r from-transparent via-black/30 to-transparent text-center"
           onClick={() =>
-            navigate(`/popular-article/${blogs[currentBlogIndex].id}`)
+            navigate(`/latest-articles/${blogs[currentBlogIndex].id}`)
           }
         >
           <h3 className="text-white">{blogs[currentBlogIndex].title}</h3>
